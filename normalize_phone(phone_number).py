@@ -1,16 +1,17 @@
 import re
 
 def normalize_phone(phone_number):
+    
     pattern = r"[;,\-:!\.\()\s]"
     phone_number = re.sub(pattern, "", phone_number) 
     
-    index_of_0_in_number =  phone_number.find("0")
+    index_of_0_in_phone_number =  phone_number.find("0")
     
-    if index_of_0_in_number == 0:
+    if index_of_0_in_phone_number == 0:
         phone_number = "+38" + phone_number
-    elif index_of_0_in_number == 1:
+    elif index_of_0_in_phone_number == 1:
         phone_number = "+3"+ phone_number
-    elif index_of_0_in_number == 2:
+    elif index_of_0_in_phone_number == 2:
         phone_number = "+" + phone_number
     else:
         return(phone_number )
