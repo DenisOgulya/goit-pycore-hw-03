@@ -71,6 +71,7 @@ def get_upcoming_birthdays(users):
 
         if today <= birthday_this_year <= end_of_week:
             user_copy = user.copy()
+           
             
             # If the birthday is on Saturday (5), move it to Monday
             if birthday_this_year.weekday() == 5:
@@ -78,15 +79,30 @@ def get_upcoming_birthdays(users):
             elif birthday_this_year.weekday() == 6:  # Sunday → Monday
                 birthday_this_year += timedelta(days=1)
 
-            user_copy["birthday"] = birthday_this_year.strftime("%Y-%m-%d")
+            user_copy["congratulation_date"] = birthday_this_year.strftime("%Y-%m-%d")
+            user_copy.pop("birthday")
+            
+            
+            
             next_week_birthdays.append(user_copy)
+            
 
     return next_week_birthdays
 
 # Example:
-dict_of_birthdays = get_upcoming_birthdays(users=[
-    {"name": "John Doe", "birthday": "1985.06.14"},  # Saturday
-    {"name": "Jane Smith", "birthday": "1990.06.17"}  # Tuesday
-])
 
-print(dict_of_birthdays)
+users = [
+    {"name": "John Doe", "birthday": "1985.06.14"},
+    {"name": "Jane Smith", "birthday": "1990.06.18"}
+]
+
+upcoming_birthdays = get_upcoming_birthdays(users)
+print("Список привітань на цьому тижні:", upcoming_birthdays)
+
+
+# dict_of_birthdays = get_upcoming_birthdays(users=[
+#     {"name": "John Doe", "birthday": "1985.06.14"},  # Saturday
+#     {"name": "Jane Smith", "birthday": "1990.06.17"}  # Tuesday
+# ])
+
+# print(dict_of_birthdays)
